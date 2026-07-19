@@ -1,11 +1,11 @@
 ---
 name: ai-learning-daily-brief
-description: Generate a source-linked Chinese AI learning daily brief from current builder, podcast, and official-blog feeds, then create a 2-3 minute spoken script and optional local Doubao TTS MP3. Use when the user asks for an AI daily brief, AI learning brief, 每日 AI 简报, AI 学习每日简报, today’s AI builder signals, or the matching audio edition.
+description: Generate a source-linked Chinese AI learning daily brief from current builder, podcast, and official-blog feeds, then create a 2-3 minute spoken script and a local Doubao TTS MP3. Use when the user asks for an AI daily brief, AI learning brief, 每日 AI 简报, AI 学习每日简报, today’s AI builder signals, or the matching audio edition.
 ---
 
 # AI 学习每日简报
 
-生成当天的中文 AI 学习简报、口播稿和可选本地 MP3。先抓取当天来源，再判断；不要用旧知识冒充今日动态。
+生成当天的中文 AI 学习简报、口播稿和豆包 TTS 本地 MP3。先抓取当天来源，再判断；不要用旧知识冒充今日动态。
 
 ## 工作流
 
@@ -25,7 +25,7 @@ description: Generate a source-linked Chinese AI learning daily brief from curre
 4. 对价格、权限、地区、发布日期、产品能力等易变化事实，用官方页面二次核验。找不到可靠依据就明确写“未核实”，不要补写。
 5. 按 [references/output-spec.md](references/output-spec.md) 输出固定五段文字版，并保留每条原始链接。
 6. 把文字版改写成 `850-1,050` 个汉字、约 `2-3 分钟`的口播稿。首句固定为：`YYYY 年 M 月 D 日 AI 学习简报，这里是跟着胡叔学 AI。`
-7. 用户需要音频或环境已配置 Doubao TTS 时，保存口播稿后运行：
+7. 保存口播稿后，固定调用豆包 TTS 生成本地 MP3：
 
    ```bash
    python3 scripts/generate_doubao_tts.py \
