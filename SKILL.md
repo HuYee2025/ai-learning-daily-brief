@@ -35,6 +35,10 @@ description: Generate a source-linked Chinese AI learning daily brief from curre
 
 8. 最后报告文字版、口播稿和 MP3 的绝对路径；能读取音频时长时一并报告。
 
+## 每日自动执行
+
+当用户要求把本 Skill 加入计划任务或每天自动执行时，读取 [references/automation.md](references/automation.md)。使用当前智能体环境提供的 scheduler / Scheduled task / Automation 创建任务，并在任务提示词中显式点名 `$ai-learning-daily-brief`。创建后核对启用状态、频率、时区、输出目录，并手动试运行一次。
+
 ## 硬规则
 
 - 默认中文，结论先行，简洁直接。
