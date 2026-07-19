@@ -1,11 +1,11 @@
 ---
 name: ai-learning-daily-brief
-description: Generate a source-linked Chinese AI learning daily brief from current builder, podcast, and official-blog feeds, then create a 2-3 minute spoken script and a local Doubao TTS MP3. Use when the user asks for an AI daily brief, AI learning brief, 每日 AI 简报, AI 学习每日简报, today’s AI builder signals, or the matching audio edition.
+description: Generate a source-linked Chinese AI learning daily brief from current builder, podcast, and official-blog feeds, then create a 2-3 minute spoken script and optionally use Doubao text-to-speech to generate a local MP3. Use when the user asks for an AI daily brief, AI learning brief, 每日 AI 简报, AI 学习每日简报, today’s AI builder signals, or the matching audio edition.
 ---
 
 # AI 学习每日简报
 
-生成当天的中文 AI 学习简报、口播稿和豆包 TTS 本地 MP3。先抓取当天来源，再判断；不要用旧知识冒充今日动态。
+生成当天的中文 AI 学习简报和口播稿；根据用户需要，可调用豆包文字转语音（TTS）生成本地 MP3。先抓取当天来源，再判断；不要用旧知识冒充今日动态。
 
 ## 工作流
 
@@ -25,7 +25,7 @@ description: Generate a source-linked Chinese AI learning daily brief from curre
 4. 对价格、权限、地区、发布日期、产品能力等易变化事实，用官方页面二次核验。找不到可靠依据就明确写“未核实”，不要补写。
 5. 按 [references/output-spec.md](references/output-spec.md) 输出固定五段文字版，并保留每条原始链接。
 6. 把文字版改写成 `850-1,050` 个汉字、约 `2-3 分钟`的口播稿。首句固定为：`YYYY 年 M 月 D 日 AI 学习简报，这里是跟着胡叔学 AI。`
-7. 保存口播稿后，固定调用豆包 TTS 生成本地 MP3：
+7. 用户需要语音 MP3 时，保存口播稿并调用豆包文字转语音（TTS）生成本地 MP3：
 
    ```bash
    python3 scripts/generate_doubao_tts.py \
@@ -33,7 +33,7 @@ description: Generate a source-linked Chinese AI learning daily brief from curre
      --output /absolute/path/to/YY-MM-DD-ai-learning-brief.mp3
    ```
 
-8. 最后报告文字版、口播稿和 MP3 的绝对路径；能读取音频时长时一并报告。
+8. 最后报告文字版和口播稿的绝对路径；如果生成了 MP3，再报告 MP3 绝对路径和音频时长。
 
 ## 每日自动执行
 
@@ -46,7 +46,7 @@ description: Generate a source-linked Chinese AI learning daily brief from curre
 - 长内容按章节或时间戳提炼，不做泛摘要。
 - feed 稀缺时少写或讲深，绝不编造三条信号凑数。
 - 口播稿不念链接、Markdown 和栏目编号；只讲深一个最高价值主题。
-- 默认音色为豆包 TTS 2.0 的 `zh_male_yuanboxiaoshu_uranus_bigtts`（渊博小叔 2.0）。
+- 生成 MP3 时，默认使用豆包 TTS 2.0 的 `zh_male_yuanboxiaoshu_uranus_bigtts`（渊博小叔 2.0）。
 - 只在本地生成 MP3，不上传、发布或发送。
 - 不打印、复制、提交任何 API key。TTS 失败时保留文字版和口播稿，并简短报告原因。
 - 除非用户明确要求，不修改用户的资料库、规则文件或自动化配置。
