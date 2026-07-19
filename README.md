@@ -16,19 +16,28 @@
 
 每条 builder 信号必须区分：`事实`、`作者观点`、`我的推断`，并保留原始链接。
 
-## 内置信息源
+## 信息源
 
-Skill 使用 [follow-builders](https://github.com/zarazhangrui/follow-builders) 的三个公开 feed：
+这个项目的起点是 Zara 的 AI 学习资料和开源项目 [follow-builders](https://github.com/zarazhangrui/follow-builders)，它为早期来源发现和自动聚合提供了重要基础，在此统一致谢。
 
-| 类型 | 信息源 | 用途 |
+在此基础上，本项目重新维护自己的信息源目录、筛选优先级、事实核验方式和简报结构。真正的信息源是被追踪的个人、团队、节目、官方博客和产品，而不是某一个聚合项目。
+
+当前整理的信息源包括：
+
+| 类型 | 代表性来源 | 关注内容 |
 | --- | --- | --- |
-| X / Twitter | [feed-x.json](https://raw.githubusercontent.com/zarazhangrui/follow-builders/main/feed-x.json) | AI builders、模型团队、开发者和产品负责人的一手动态 |
-| Podcast / YouTube | [feed-podcasts.json](https://raw.githubusercontent.com/zarazhangrui/follow-builders/main/feed-podcasts.json) | 创始人访谈、技术讨论、产品复盘和长内容 transcript |
-| 官方博客 | [feed-blogs.json](https://raw.githubusercontent.com/zarazhangrui/follow-builders/main/feed-blogs.json) | AI 公司、模型和开发者平台的官方发布 |
+| AI builders / X | Andrej Karpathy、Swyx、Boris Cherny、Peter Steinberger、Hamel Husain、OpenAI Developers、Anthropic、Claude Developers 等 | AI coding、模型能力、工程实践和工作流变化 |
+| Podcast / YouTube | Latent Space、No Priors、Lenny's Podcast、Training Data、Unsupervised Learning、AI & I 等 | 创始人访谈、技术讨论和产品复盘 |
+| 官方博客 / Newsletter | OpenAI、Anthropic、Google、AINews by smol.ai、Every、Ben's Bites、Peter Yang 等 | 官方发布、AI 工程、产品和学习资源 |
+| AI 产品案例 | NotebookLM、Granola、Huxe、Snipd、Comet、Poke、TLDW、Faces 等 | 交互机制、学习体验、增长和 AI-native 工作流 |
 
-上游 feed 的具体账号会变化，不在本仓库写死。Skill 会检查 `generatedAt`，并在数据过旧或某个 feed 为空时如实说明。
+完整名单和整理方法见 [references/source-catalog.md](references/source-catalog.md)。
 
-涉及模型能力、价格、权限、可用地区、发布时间等易变化事实时，智能体还必须打开对应官方文档或产品页面二次核验。社交媒体热度只代表传播量，不代表事实可靠。
+### 当前自动抓取通道
+
+为降低每日采集成本，Skill 当前会使用 `follow-builders` 提供的 X、Podcast 和 Blog 公开 feed 作为自动抓取通道。feed 只是获取数据的技术入口，不等于本项目的全部信息源，也不替代我们自己的筛选和事实核验。
+
+Skill 会检查 feed 的 `generatedAt`；数据过旧、来源缺失或某个 feed 为空时，会从自有来源目录补充检索或如实说明，不会编造内容凑数。涉及模型能力、价格、权限、可用地区和发布时间等易变化事实时，还必须打开对应官方文档或产品页面二次核验。
 
 详细规则见 [references/sources.md](references/sources.md)。
 
@@ -93,6 +102,7 @@ ai-learning-daily-brief/
 ├── references/
 │   ├── automation.md
 │   ├── output-spec.md
+│   ├── source-catalog.md
 │   └── sources.md
 └── scripts/
     ├── fetch_feeds.py
@@ -101,7 +111,7 @@ ai-learning-daily-brief/
 
 ## 手动测试
 
-抓取三个 feed：
+抓取当前使用的三个聚合 feed：
 
 ```bash
 python3 scripts/fetch_feeds.py --output-dir /tmp/ai-learning-daily-brief

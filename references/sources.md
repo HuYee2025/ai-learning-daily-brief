@@ -1,13 +1,31 @@
 # 信息源与筛选
 
-## 公开 feed
+## 项目起点
 
-- X / builder 动态：<https://raw.githubusercontent.com/zarazhangrui/follow-builders/main/feed-x.json>
-- Podcast / YouTube：<https://raw.githubusercontent.com/zarazhangrui/follow-builders/main/feed-podcasts.json>
-- 官方博客：<https://raw.githubusercontent.com/zarazhangrui/follow-builders/main/feed-blogs.json>
-- 上游项目：<https://github.com/zarazhangrui/follow-builders>
+本项目最初参考了 Zara 的 AI 学习资料，并使用开源项目 [follow-builders](https://github.com/zarazhangrui/follow-builders) 提供的公开 feed 完成早期自动聚合。统一保留这项来源说明即可，不要把每一位作者、节目或官方博客标成“源自 Zara”。
 
-feed 顶层分别使用 `x`、`podcasts`、`blogs` 数组，并带 `generatedAt`。先检查生成时间，过旧时要说明数据新鲜度。
+## 本项目的信息源
+
+把具体的个人、团队、节目、官方博客和产品视为真正的信息源。读取 [source-catalog.md](source-catalog.md) 获取本项目维护的来源目录，并按当天价值动态增删。
+
+来源目录不是机械白名单。允许补充新的高质量一手来源，但要记录原始链接、来源身份和关注理由。
+
+## 当前自动采集通道
+
+- X / builder 聚合：<https://raw.githubusercontent.com/zarazhangrui/follow-builders/main/feed-x.json>
+- Podcast / YouTube 聚合：<https://raw.githubusercontent.com/zarazhangrui/follow-builders/main/feed-podcasts.json>
+- 官方博客聚合：<https://raw.githubusercontent.com/zarazhangrui/follow-builders/main/feed-blogs.json>
+
+这些 feed 是当前的数据获取通道，不是本项目的全部来源清单。feed 顶层分别使用 `x`、`podcasts`、`blogs` 数组，并带 `generatedAt`。先检查生成时间；数据过旧、来源缺失或 feed 为空时，按 `source-catalog.md` 直接检索原始来源，仍无可靠内容就说明缺口。
+
+## 整理方法
+
+1. 从来源目录和聚合 feed 中发现候选内容。
+2. 只保留 AI builder 一手观点、AI coding、模型能力、AI 产品和工作流变化。
+3. 回到作者原帖、节目原视频、官方博客或产品文档核对。
+4. 区分事实、作者观点和我的推断。
+5. 判断它对学习动作、项目实验或内容选题是否有用。
+6. 保留原始链接；聚合链接只作采集线索，不替代原文。
 
 ## 优先级
 

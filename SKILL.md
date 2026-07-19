@@ -10,7 +10,7 @@ description: Generate a source-linked Chinese AI learning daily brief from curre
 ## 工作流
 
 1. 获取用户所在时区的当前日期；默认使用北京时间。标题写成 `YY-MM-DD AI 学习每日简报`。
-2. 读取 [references/sources.md](references/sources.md)，抓取三个公开 feed。优先使用联网工具；也可运行：
+2. 读取 [references/sources.md](references/sources.md) 和 [references/source-catalog.md](references/source-catalog.md)。先抓取当前三个聚合 feed；数据过旧、来源缺失或 feed 为空时，按自有来源目录直接检索原始来源。优先使用联网工具；也可运行：
 
    ```bash
    python3 scripts/fetch_feeds.py --output-dir /tmp/ai-learning-daily-brief
